@@ -35,7 +35,7 @@ class AlbumTable {
 
         $id = (int) $album->id;
         if ($id == 0) {
-            $this->tableGateway->insert($data);
+            $id = $this->tableGateway->insert($data);
         } else {
             if ($this->getAlbum($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
@@ -43,6 +43,8 @@ class AlbumTable {
                 throw new \Exception('Album id does not exist');
             }
         }
+        
+        return $id;
     }
 
     public function deleteAlbum($id) {

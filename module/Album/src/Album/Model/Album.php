@@ -33,7 +33,7 @@ class Album implements InputFilterAwareInterface {
 
             $inputFilter->add(array(
                 'name' => 'id',
-                'required' => true,
+                'required' => false,
                 'filters' => array(
                     array('name' => 'Int'),
                 ),
