@@ -2,8 +2,13 @@
 
 return array(
     'controllers' => array(
-        'invokables' => array(
-            'AlbumRest\Controller\AlbumRest' => 'AlbumRest\Controller\AlbumRestController',
+        'factories' => array(
+            'AlbumRest\Controller\AlbumRest' => function($sm) {
+                $locator = $sm->getServiceLocator();
+                $server = $locator->get('ZF\OAuth2\Service\OAuth2Server');
+                $provider = $locator->get('ZF\OAuth2\Provider\UserId');
+                return new AlbumRest\Controller\AlbumRestController($server, $provider);
+            }
         ),
     ),
     // The following section is new` and should be added to your file
